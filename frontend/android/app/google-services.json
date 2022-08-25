@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "791853939343",
+    "project_id": "andalan-mama-63763",
+    "storage_bucket": "andalan-mama-63763.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791853939343:android:c614bf83507f8a85e4cefa",
+        "android_client_info": {
+          "package_name": "com.andalanmama"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791853939343-q1sjunmgqjm2uvvkpm281tpt3hpe2q5g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.andalanmama",
+            "certificate_hash": "9af99be6c929ffb86aa7a23ddbbedd999feec898"
+          }
+        },
+        {
+          "client_id": "791853939343-dc05eo7si704d7sip13fohgitrvjm275.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNhd3Z_BRN2UGKIMlP2aZYHdEFCb3xAg4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "791853939343-dc05eo7si704d7sip13fohgitrvjm275.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

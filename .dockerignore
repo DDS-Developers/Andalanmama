@@ -1,0 +1,5 @@
+server/storage
+frontend/dist
+frontend/ios
+frontend/android
+storage/

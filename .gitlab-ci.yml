@@ -1,0 +1,215 @@
+cache:
+  paths:
+    - frontend/.gradle
+    - frontend/node_modules
+    - server/vendor
+
+stages:
+  - linting
+  # - test
+  - build
+  - deploy
+
+# lint-server:
+#   image: purwandi/docker-images:php.7.3-fpm-alpine
+#   stage: linting
+#   script:
+#     - cd server
+#     - wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+#     - php phpcs.phar
+#   only:
+#     changes:
+#       - .gitlab-ci.yml
+#       - server/**/*
+
+lint-frontend:
+  image: node:14.17.0
+  stage: linting
+  script:
+    - cd frontend
+    - npm install
+    - npm run linting-web
+  only:
+    changes:
+      - .gitlab-ci.yml
+      - frontend/**/*
+
+# test-mysql:
+#   image: purwandi/docker-images:php.7.3-fpm-alpine
+#   stage: test
+#   services:
+#     - mysql:5.7
+#   variables:
+#     MYSQL_DATABASE: homestead
+#     MYSQL_ROOT_PASSWORD: secret
+#     DB_CONNECTION: mysql
+#     DB_HOST: mysql
+#     DB_DATABASE: homestead
+#     DB_USERNAME: root
+#     DB_PASSWORD: secret
+#     LOG_CHANNEL: single
+#   before_script:
+#     - apt-get update && apt-get install wget git -y
+#   script:
+#     - cd server
+#     - cp .env.example .env
+#     - composer install
+#     - php artisan key:generate
+#     - php artisan config:clear
+#     - php ./vendor/bin/phpunit
+#   only:
+#     changes:
+#       - .gitlab-ci.yml
+#       - server/**/*
+
+# test-sqlite:
+#   image: purwandi/docker-images:php.7.3-fpm-alpine
+#   stage: test
+#   variables:
+#     DB_CONNECTION: sqlite
+#     LOG_CHANNEL: single
+#   before_script:
+#     - apt-get update && apt-get install wget git -y
+#   script:
+#     - cd server
+#     - cp .env.example .env
+#     - touch database/database.sqlite
+#     - export DB_DATABASE=${PWD}/database/database.sqlite
+#     - composer install
+#     - php artisan key:generate
+#     - php artisan config:clear
+#     - php ./vendor/bin/phpunit
+#   after_script:
+#     - cat server/storage/logs/laravel.log
+#   only:
+#     changes:
+#       - .gitlab-ci.yml
+#       - server/**/*
+
+build-docker:
+  image: docker:19.03.5
+  services:
+    - docker:19.03.5-dind
+  stage: build
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - chmod +x ./scripts/build-image.sh
+    - ./scripts/build-image.sh
+  only:
+    - master
+
+# build-android:
+#   image: purwandi/docker-images:react-fastlane
+#   stage: build
+#   before_script:
+#     - export GRADLE_USER_HOME=`pwd`/.gradle
+#     - cd frontend
+#     - npm i jetifier && npm i
+#     - npx jetify
+#     - chmod +x android/gradlew
+#   script:
+#     - sysctl fs.inotify.max_user_instances=524288
+#     - sysctl fs.inotify.max_user_watches=524288
+#     - sysctl fs.inotify.max_queued_events=524288
+#     - cd android
+#     - ./gradlew assembleRelease &&./gradlew bundleRelease
+#   cache:
+#     paths:
+#       - .gradle/wrapper
+#       - .gradle/caches
+#       - frontend/android/app/build
+#   artifacts:
+#     paths:
+#       - frontend/android/app/build/outputs
+#   only:
+#     changes:
+#       - .gitlab-ci.yml
+#       - frontend/src/native/**/*
+
+deploy-staging:
+  image: kroniak/ssh-client
+  stage: deploy
+  script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - chmod +x ./scripts/deploy.sh
+    - ./scripts/deploy.sh
+  only:
+    - master
+
+deploy-production:
+  image: kroniak/ssh-client
+  stage: deploy
+  script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY_PRODUCTION")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - chmod +x ./scripts/deploy-production.sh
+    - ./scripts/deploy-production.sh
+  only:
+    - master
+
+deploy-migration:
+  image: purwandi/docker-images:php.7.3-fpm-alpine
+  stage: deploy
+  variables:
+    APP_ENV: staging
+  before_script:
+    - export DB_CONNECTION="mysql"
+    - export DB_HOST=${SERVER_IP}
+    - export DB_PORT=${DB_DATABASE_PORT}
+    - export DB_DATABASE=${DB_DATABASE_PRODUCTION}
+    - export DB_USERNAME=${DB_USERNAME_PRODUCTION}
+    - export DB_PASSWORD=${DB_PASSWORD_PRODUCTION}
+  script:
+    - cd server
+    - cp .env.example .env
+    - composer self-update
+    - COMPOSER_MEMORY_LIMIT=-1 composer install
+    - php artisan key:generate
+    - php artisan config:clear
+    - php artisan migrate --force
+  only:
+    - master
+
+# deploy-seed:
+#   image: purwandi/docker-images:php.7.3-fpm-alpine
+#   stage: deploy
+#   variables:
+#     APP_ENV: staging
+#   before_script:
+#     - export DB_CONNECTION="mysql"
+#     - export DB_HOST=${SERVER_IP}
+#     - export DB_PORT=${DB_DATABASE_PORT}
+#     - export DB_DATABASE=${DB_DATABASE_PRODUCTION}
+#     - export DB_USERNAME=${DB_USERNAME_PRODUCTION}
+#     - export DB_PASSWORD=${DB_PASSWORD_PRODUCTION}
+#   script:
+#     - cd server
+#     - cp .env.example .env
+#     - composer install
+#     - php artisan key:generate
+#     - php artisan config:clear
+#     - php artisan migrate:fresh --seed
+#   when: manual
+#   only:
+#     - master
+
+# pages:
+#   image: node:latest
+#   stage: deploy
+#   script:
+#     - cd frontend
+#     - npm run storybook-build
+#     - cd ..
+#     - mkdir public
+#     - cp -rf frontend/storybook-build/* public/
+#   only:
+#     - master
+#   artifacts:
+#     paths:
+#       - public

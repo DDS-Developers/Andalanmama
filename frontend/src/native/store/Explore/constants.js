@@ -1,0 +1,38 @@
+/**
+ * Explore/constants.js
+ */
+export const LOAD_WEBVIEW_CAMPAIGN = 'AndalanMama/Explore/LOAD_WEBVIEW_CAMPAIGN';
+export const SET_LOAD_WEBVIEW_CAMPAIGN = 'AndalanMama/Explore/SET_LOAD_WEBVIEW_CAMPAIGN';
+export const LOAD_BANNER = 'AndalanMama/Explore/LOAD_BANNER';
+export const SET_LOAD_BANNER = 'AndalanMama/Explore/SET_LOAD_BANNER';
+export const LOAD_EXPLORE_HIGHLIGHT = 'AndalanMama/Explore/LOAD_EXPLORE_HIGHLIGHT';
+export const SET_EXPLORE_HIGHLIGHT = 'AndalanMama/Explore/SET_EXPLORE_HIGHLIGHT';
+export const SET_LOADING_HIGHLIGHT = 'AndalanMama/Explore/SET_LOADING_HIGHLIGHT';
+
+export const LOAD_EXPLORE_RECOMMENDATION = 'AndalanMama/Explore/LOAD_EXPLORE_RECOMMENDATION';
+export const SET_EXPLORE_RECOMMENDATION = 'AndalanMama/Explore/SET_EXPLORE_RECOMMENDATION';
+export const SET_LOADING_RECOMMENDATION = 'AndalanMama/Explore/SET_LOADING_RECOMMENDATION';
+
+export const LOAD_EXPLORE_POPULAR_RECIPE = 'AndalanMama/Explore/LOAD_EXPLORE_POPULAR_RECIPE';
+export const SET_EXPLORE_POPULAR_RECIPE = 'AndalanMama/Explore/SET_EXPLORE_POPULAR_RECIPE';
+export const SET_LOADING_POPULAR_RECIPE = 'AndalanMama/Explore/SET_LOADING_POPULAR_RECIPE';
+
+export const LOAD_EXPLORE_PUBLISHED = 'AndalanMama/Explore/LOAD_EXPLORE_PUBLISHED';
+export const SET_EXPLORE_PUBLISHED = 'AndalanMama/Explore/SET_EXPLORE_PUBLISHED';
+export const SET_LOADING_PUBLISHED = 'AndalanMama/Explore/SET_LOADING_PUBLISHED';
+
+export const LOAD_EXPLORE_POPULAR_RECIPE_BOOK =
+  'AndalanMama/Explore/LOAD_EXPLORE_POPULAR_RECIPE_BOOK';
+export const SET_EXPLORE_POPULAR_RECIPE_BOOK =
+  'AndalanMama/Explore/SET_EXPLORE_POPULAR_RECIPE_BOOK';
+export const SET_LOADING_POPULAR_RECIPE_BOOK =
+  'AndalanMama/Explore/SET_LOADING_POPULAR_RECIPE_BOOK';
+
+export const LOAD_EXPLORE_RECENT = 'AndalanMama/Explore/LOAD_EXPLORE_RECENT';
+export const LOAD_MORE_EXPLORE_RECENT = 'AndalanMama/Explore/LOAD_MORE_EXPLORE_RECENT';
+export const SET_EXPLORE_RECENT = 'AndalanMama/Explore/SET_EXPLORE_RECENT';
+export const ADD_EXPLORE_RECENT = 'AndalanMama/Explore/ADD_EXPLORE_RECENT';
+export const SET_EXPLORE_RECENT_PAGE = 'AndalanMama/Explore/SET_EXPLORE_RECENT_PAGE';
+export const SET_LOADING_RECENT = 'AndalanMama/Explore/SET_LOADING_RECENT';
+export const SET_LOADING_MORE_RECENT = 'AndalanMama/Explore/SET_LOADING_MORE_RECENT';
+export const ADD_ITEM_PROP_COUNT = 'AndalanMama/Explore/ADD_ITEM_PROP_COUNT';

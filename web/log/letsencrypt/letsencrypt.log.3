@@ -1,0 +1,404 @@
+2021-05-10 09:23:37,110:DEBUG:certbot.main:certbot version: 0.31.0.dev0
+2021-05-10 09:23:37,111:DEBUG:certbot.main:Arguments: []
+2021-05-10 09:23:37,111:DEBUG:certbot.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2021-05-10 09:23:37,135:DEBUG:certbot.log:Root logging level set at 20
+2021-05-10 09:23:37,136:INFO:certbot.log:Saving debug log to /var/log/letsencrypt/letsencrypt.log
+2021-05-10 09:23:37,192:DEBUG:certbot.plugins.selection:Requested authenticator <certbot.cli._Default object at 0x7f63973ad710> and installer <certbot.cli._Default object at 0x7f63973ad710>
+2021-05-10 09:23:37,235:DEBUG:certbot.storage:Should renew, less than 30 days before certificate expiry 2021-05-08 21:45:45 UTC.
+2021-05-10 09:23:37,235:INFO:certbot.renewal:Cert is due for renewal, auto-renewing...
+2021-05-10 09:23:37,236:DEBUG:certbot.plugins.selection:Requested authenticator webroot and installer None
+2021-05-10 09:23:37,249:DEBUG:certbot.plugins.selection:Single candidate plugin: * webroot
+Description: Place files in webroot directory
+Interfaces: IAuthenticator, IPlugin
+Entry point: webroot = certbot.plugins.webroot:Authenticator
+Initialized: <certbot.plugins.webroot.Authenticator object at 0x7f63973e6f90>
+Prep: True
+2021-05-10 09:23:37,250:DEBUG:certbot.plugins.selection:Selected authenticator <certbot.plugins.webroot.Authenticator object at 0x7f63973e6f90> and installer None
+2021-05-10 09:23:37,250:INFO:certbot.plugins.selection:Plugins selected: Authenticator webroot, Installer None
+2021-05-10 09:23:37,258:DEBUG:certbot.main:Picked account: <Account(RegistrationResource(body=Registration(status=None, terms_of_service_agreed=None, agreement=None, only_return_existing=None, contact=(), key=None, external_account_binding=None), uri=u'https://acme-v02.api.letsencrypt.org/acme/acct/83350571', new_authzr_uri=None, terms_of_service=None), 0ea9106801e19f6e2108ad680f6573b9, Meta(creation_host=u'7cdf2892b8b8', creation_dt=datetime.datetime(2020, 4, 14, 3, 28, 30, tzinfo=<UTC>)))>
+2021-05-10 09:23:37,260:DEBUG:acme.client:Sending GET request to https://acme-v02.api.letsencrypt.org/directory.
+2021-05-10 09:23:37,264:DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org:443
+2021-05-10 09:23:38,108:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "GET /directory HTTP/1.1" 200 658
+2021-05-10 09:23:38,109:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Mon, 10 May 2021 09:23:37 GMT
+Content-Type: application/json
+Content-Length: 658
+Connection: keep-alive
+Cache-Control: public, max-age=0, no-cache
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "keyChange": "https://acme-v02.api.letsencrypt.org/acme/key-change",
+  "meta": {
+    "caaIdentities": [
+      "letsencrypt.org"
+    ],
+    "termsOfService": "https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf",
+    "website": "https://letsencrypt.org"
+  },
+  "newAccount": "https://acme-v02.api.letsencrypt.org/acme/new-acct",
+  "newNonce": "https://acme-v02.api.letsencrypt.org/acme/new-nonce",
+  "newOrder": "https://acme-v02.api.letsencrypt.org/acme/new-order",
+  "revokeCert": "https://acme-v02.api.letsencrypt.org/acme/revoke-cert",
+  "wptxmSjT1qY": "https://community.letsencrypt.org/t/adding-random-entries-to-the-directory/33417"
+}
+2021-05-10 09:23:38,113:INFO:certbot.main:Renewing an existing certificate
+2021-05-10 09:23:38,140:DEBUG:certbot.crypto_util:Generating key (2048 bits): /etc/letsencrypt/keys/0096_key-certbot.pem
+2021-05-10 09:23:38,145:DEBUG:certbot.crypto_util:Creating CSR: /etc/letsencrypt/csr/0096_csr-certbot.pem
+2021-05-10 09:23:38,146:DEBUG:acme.client:Requesting fresh nonce
+2021-05-10 09:23:38,146:DEBUG:acme.client:Sending HEAD request to https://acme-v02.api.letsencrypt.org/acme/new-nonce.
+2021-05-10 09:23:38,356:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "HEAD /acme/new-nonce HTTP/1.1" 200 0
+2021-05-10 09:23:38,357:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Mon, 10 May 2021 09:23:38 GMT
+Connection: keep-alive
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: 01045Xc0yc7zGAE10_ZKEfIxGGhEjujK8ledcYhub2W139o
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+
+2021-05-10 09:23:38,357:DEBUG:acme.client:Storing nonce: 01045Xc0yc7zGAE10_ZKEfIxGGhEjujK8ledcYhub2W139o
+2021-05-10 09:23:38,358:DEBUG:acme.client:JWS payload:
+{
+  "identifiers": [
+    {
+      "type": "dns", 
+      "value": "andalanmama.com"
+    }, 
+    {
+      "type": "dns", 
+      "value": "api-beta.andalanmama.com"
+    }, 
+    {
+      "type": "dns", 
+      "value": "api.andalanmama.com"
+    }, 
+    {
+      "type": "dns", 
+      "value": "beta.andalanmama.com"
+    }
+  ]
+}
+2021-05-10 09:23:38,360:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/new-order:
+{
+  "protected": "eyJub25jZSI6ICIwMTA0NVhjMHljN3pHQUUxMF9aS0VmSXhHR2hFanVqSzhsZWRjWWh1YjJXMTM5byIsICJ1cmwiOiAiaHR0cHM6Ly9hY21lLXYwMi5hcGkubGV0c2VuY3J5cHQub3JnL2FjbWUvbmV3LW9yZGVyIiwgImtpZCI6ICJodHRwczovL2FjbWUtdjAyLmFwaS5sZXRzZW5jcnlwdC5vcmcvYWNtZS9hY2N0LzgzMzUwNTcxIiwgImFsZyI6ICJSUzI1NiJ9", 
+  "payload": "ewogICJpZGVudGlmaWVycyI6IFsKICAgIHsKICAgICAgInR5cGUiOiAiZG5zIiwgCiAgICAgICJ2YWx1ZSI6ICJhbmRhbGFubWFtYS5jb20iCiAgICB9LCAKICAgIHsKICAgICAgInR5cGUiOiAiZG5zIiwgCiAgICAgICJ2YWx1ZSI6ICJhcGktYmV0YS5hbmRhbGFubWFtYS5jb20iCiAgICB9LCAKICAgIHsKICAgICAgInR5cGUiOiAiZG5zIiwgCiAgICAgICJ2YWx1ZSI6ICJhcGkuYW5kYWxhbm1hbWEuY29tIgogICAgfSwgCiAgICB7CiAgICAgICJ0eXBlIjogImRucyIsIAogICAgICAidmFsdWUiOiAiYmV0YS5hbmRhbGFubWFtYS5jb20iCiAgICB9CiAgXQp9", 
+  "signature": "unLn89Mw65Aj0F04HtCYyJK5ih_NDQZ78oZMy0M4EkGFx6HxY-fhABAo2LzCvrtEob40ne1p8lRBEbuG_QjGfJuhwZ4ciD4C1szzOutOC-ematFtwMivinlnm5yqop-TgT-mgmRjz5ti2WtRBqslfTee3dVnEcCFwD1tkd4UBzU0PgbCfMRgBbvKcO3UJx6kQQwFcHQgZoju5m6-314ro6PXwu4HD4ewGywaYhMk1AQrvuZJ9usHkQZcUE_b6ZPN-MvDbU_LtvIaSQ2iDqbTCUKl870isDjWjjY9tTd-UaZi8b4c81WLu9zC3_z0Q8gNTCvSdM9wXuvSZVE6puh8-Q"
+}
+2021-05-10 09:23:38,738:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/new-order HTTP/1.1" 201 765
+2021-05-10 09:23:38,740:DEBUG:acme.client:Received response:
+HTTP 201
+Server: nginx
+Date: Mon, 10 May 2021 09:23:38 GMT
+Content-Type: application/json
+Content-Length: 765
+Connection: keep-alive
+Boulder-Requester: 83350571
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Location: https://acme-v02.api.letsencrypt.org/acme/order/83350571/9603549448
+Replay-Nonce: 0104kq7oVsZIrJwbRE9tHr16r6gAlABuatl--mE38HrcbRs
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "status": "pending",
+  "expires": "2021-05-17T09:23:38Z",
+  "identifiers": [
+    {
+      "type": "dns",
+      "value": "andalanmama.com"
+    },
+    {
+      "type": "dns",
+      "value": "api-beta.andalanmama.com"
+    },
+    {
+      "type": "dns",
+      "value": "api.andalanmama.com"
+    },
+    {
+      "type": "dns",
+      "value": "beta.andalanmama.com"
+    }
+  ],
+  "authorizations": [
+    "https://acme-v02.api.letsencrypt.org/acme/authz-v3/12936719537",
+    "https://acme-v02.api.letsencrypt.org/acme/authz-v3/12936719539",
+    "https://acme-v02.api.letsencrypt.org/acme/authz-v3/13000602915",
+    "https://acme-v02.api.letsencrypt.org/acme/authz-v3/13000602916"
+  ],
+  "finalize": "https://acme-v02.api.letsencrypt.org/acme/finalize/83350571/9603549448"
+}
+2021-05-10 09:23:38,740:DEBUG:acme.client:Storing nonce: 0104kq7oVsZIrJwbRE9tHr16r6gAlABuatl--mE38HrcbRs
+2021-05-10 09:23:38,741:DEBUG:acme.client:JWS payload:
+
+2021-05-10 09:23:38,743:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/authz-v3/12936719537:
+{
+  "protected": "eyJub25jZSI6ICIwMTA0a3E3b1ZzWklySndiUkU5dEhyMTZyNmdBbEFCdWF0bC0tbUUzOEhyY2JScyIsICJ1cmwiOiAiaHR0cHM6Ly9hY21lLXYwMi5hcGkubGV0c2VuY3J5cHQub3JnL2FjbWUvYXV0aHotdjMvMTI5MzY3MTk1MzciLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvODMzNTA1NzEiLCAiYWxnIjogIlJTMjU2In0", 
+  "payload": "", 
+  "signature": "t8vH7B6UF8ft_nt4PLH-Y9oc4UOAzQBA7AWoy9FTO3MvQA6AjbJxvQXnN-h5b7jIj4sxW2yZM-axHVFfwF-eepN9qvfomkwNZhE_kIyD-MxUVc6cOV-89CIRK3_zs_1iARPbo8pYCNp4I4ie1sarPJGqUvmzXTeIAvBDrFVGafD0p1eXyS9r5qrY70KsY23tY8JkFAJ_5Wo_5CRyEQRV0MEf8F0oO6UJqb0-XhJDTr7l0dCqdhOmb3cpJVQsCERwuhHmNQE_F4jIxIsHEVcq0SdCWtnyXkVKuFLGZvSZdC3H-oJzb-rXUoOPICCoP1YLjfFx7e7Sogc1_QydR_WPAQ"
+}
+2021-05-10 09:23:38,980:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/authz-v3/12936719537 HTTP/1.1" 200 759
+2021-05-10 09:23:38,982:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Mon, 10 May 2021 09:23:38 GMT
+Content-Type: application/json
+Content-Length: 759
+Connection: keep-alive
+Boulder-Requester: 83350571
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: 0104hJ_-2aeGIFAApABSojCZEK8H7MvZEr9fpndJTdhySFI
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "identifier": {
+    "type": "dns",
+    "value": "andalanmama.com"
+  },
+  "status": "valid",
+  "expires": "2021-06-06T23:27:58Z",
+  "challenges": [
+    {
+      "type": "http-01",
+      "status": "valid",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall-v3/12936719537/Rk-qXQ",
+      "token": "BmBqHWYJjXd1U0K2OLafQ5LczTFOoiFYpScTlCOcxIA",
+      "validationRecord": [
+        {
+          "url": "http://andalanmama.com/.well-known/acme-challenge/BmBqHWYJjXd1U0K2OLafQ5LczTFOoiFYpScTlCOcxIA",
+          "hostname": "andalanmama.com",
+          "port": "80",
+          "addressesResolved": [
+            "209.97.161.48"
+          ],
+          "addressUsed": "209.97.161.48"
+        }
+      ],
+      "validated": "2021-05-07T23:27:57Z"
+    }
+  ]
+}
+2021-05-10 09:23:38,982:DEBUG:acme.client:Storing nonce: 0104hJ_-2aeGIFAApABSojCZEK8H7MvZEr9fpndJTdhySFI
+2021-05-10 09:23:38,983:DEBUG:acme.client:JWS payload:
+
+2021-05-10 09:23:38,985:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/authz-v3/12936719539:
+{
+  "protected": "eyJub25jZSI6ICIwMTA0aEpfLTJhZUdJRkFBcEFCU29qQ1pFSzhIN012WkVyOWZwbmRKVGRoeVNGSSIsICJ1cmwiOiAiaHR0cHM6Ly9hY21lLXYwMi5hcGkubGV0c2VuY3J5cHQub3JnL2FjbWUvYXV0aHotdjMvMTI5MzY3MTk1MzkiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvODMzNTA1NzEiLCAiYWxnIjogIlJTMjU2In0", 
+  "payload": "", 
+  "signature": "D8nzerlCv6wq-e2BddZt8URqrf490HZaI6KL8I9c7L3Mzv75t33g7lUNBgcYzdvph5Cz1_4kB5MttbsBWocODksYhjljD__HikdSN90PfYxutJ8gSFV0Vii1ADujPjrb705tH1QUYj6YvEmTr5ZdDqJMoRjqAVEVuAcfpYJuYcOFeiNVOFMfW9i5QKwdqACgk00Zx7oSWkKMamt4Rems1PsE59xdrMNmxVspgwxYHP8qSQr0xmY8GVeA2H53R0gB5rtOgegtZteofkuHNNR8tjcUt6genm3fYrPhXJudwdu1eyYhgqJfe8TsA5EIjlIBH0TzqWHPLrIIwrZxOCeknQ"
+}
+2021-05-10 09:23:39,225:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/authz-v3/12936719539 HTTP/1.1" 200 771
+2021-05-10 09:23:39,226:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Mon, 10 May 2021 09:23:39 GMT
+Content-Type: application/json
+Content-Length: 771
+Connection: keep-alive
+Boulder-Requester: 83350571
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: 01031W3iRq5MZlY3o3nmZ7VgN5GBR2tEzAIHajJXdA5PuDM
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "identifier": {
+    "type": "dns",
+    "value": "api.andalanmama.com"
+  },
+  "status": "valid",
+  "expires": "2021-06-06T23:27:58Z",
+  "challenges": [
+    {
+      "type": "http-01",
+      "status": "valid",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall-v3/12936719539/zlEtNw",
+      "token": "hduMfNxEv_v1Px0GdAZ1MnFsAurtpfsCHP9I7NSfxvc",
+      "validationRecord": [
+        {
+          "url": "http://api.andalanmama.com/.well-known/acme-challenge/hduMfNxEv_v1Px0GdAZ1MnFsAurtpfsCHP9I7NSfxvc",
+          "hostname": "api.andalanmama.com",
+          "port": "80",
+          "addressesResolved": [
+            "209.97.161.48"
+          ],
+          "addressUsed": "209.97.161.48"
+        }
+      ],
+      "validated": "2021-05-07T23:27:58Z"
+    }
+  ]
+}
+2021-05-10 09:23:39,226:DEBUG:acme.client:Storing nonce: 01031W3iRq5MZlY3o3nmZ7VgN5GBR2tEzAIHajJXdA5PuDM
+2021-05-10 09:23:39,227:DEBUG:acme.client:JWS payload:
+
+2021-05-10 09:23:39,229:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/authz-v3/13000602915:
+{
+  "protected": "eyJub25jZSI6ICIwMTAzMVczaVJxNU1abFkzbzNubVo3VmdONUdCUjJ0RXpBSUhhakpYZEE1UHVETSIsICJ1cmwiOiAiaHR0cHM6Ly9hY21lLXYwMi5hcGkubGV0c2VuY3J5cHQub3JnL2FjbWUvYXV0aHotdjMvMTMwMDA2MDI5MTUiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvODMzNTA1NzEiLCAiYWxnIjogIlJTMjU2In0", 
+  "payload": "", 
+  "signature": "tgYd2iX7-7b_3cvR-X7JwzuVssgonqplZJqREzyyqoKsWrMVkGqtKladiDzUcZrwZIVb1hVESO0Hdk0AfHPITHVi0TYiTYKp5GGAh27vsP2_Uzim12uo4idP5n5EXwy4tO98C6m0JMfFj2brlbZa_DRrXwT3EXMdydUpuq3vNP4J1GtoD_4b50FP8YuSIt1Y4f2op5qarN354kPQgWfFO4sJv-2aIYTBxYeQ4C5uknVgAMt4msr151WcHTGa3eS4JKSSpXOXbl8QE56xLHIoM88AqEZUM4ONNBPLGWff8BEju7eE0ESIssPz2HLHq0njvkLilS138B4WYvjXxglgPg"
+}
+2021-05-10 09:23:39,467:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/authz-v3/13000602915 HTTP/1.1" 200 805
+2021-05-10 09:23:39,469:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Mon, 10 May 2021 09:23:39 GMT
+Content-Type: application/json
+Content-Length: 805
+Connection: keep-alive
+Boulder-Requester: 83350571
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: 0103okIor6LSXnyQ68OqQ61_oIFwMmEoxVLaJvstcYq2NAM
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "identifier": {
+    "type": "dns",
+    "value": "api-beta.andalanmama.com"
+  },
+  "status": "pending",
+  "expires": "2021-05-17T09:23:38Z",
+  "challenges": [
+    {
+      "type": "http-01",
+      "status": "pending",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall-v3/13000602915/jtd5Hw",
+      "token": "EQkEWN4ooqri4Z9vXalO-KH69_YgoUhQOJh0gJSZz1k"
+    },
+    {
+      "type": "dns-01",
+      "status": "pending",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall-v3/13000602915/mmtIKA",
+      "token": "EQkEWN4ooqri4Z9vXalO-KH69_YgoUhQOJh0gJSZz1k"
+    },
+    {
+      "type": "tls-alpn-01",
+      "status": "pending",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall-v3/13000602915/HgGE3w",
+      "token": "EQkEWN4ooqri4Z9vXalO-KH69_YgoUhQOJh0gJSZz1k"
+    }
+  ]
+}
+2021-05-10 09:23:39,469:DEBUG:acme.client:Storing nonce: 0103okIor6LSXnyQ68OqQ61_oIFwMmEoxVLaJvstcYq2NAM
+2021-05-10 09:23:39,469:DEBUG:acme.client:JWS payload:
+
+2021-05-10 09:23:39,471:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/authz-v3/13000602916:
+{
+  "protected": "eyJub25jZSI6ICIwMTAzb2tJb3I2TFNYbnlRNjhPcVE2MV9vSUZ3TW1Fb3hWTGFKdnN0Y1lxMk5BTSIsICJ1cmwiOiAiaHR0cHM6Ly9hY21lLXYwMi5hcGkubGV0c2VuY3J5cHQub3JnL2FjbWUvYXV0aHotdjMvMTMwMDA2MDI5MTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvODMzNTA1NzEiLCAiYWxnIjogIlJTMjU2In0", 
+  "payload": "", 
+  "signature": "p772nmhMFQQBVcbtWNbg7Srj_NYBjCYawZD0oU0qBdaiKZtLn9PAwL3CEnRwEfE3hbmJcgIOCDDiXiW-onFcolgYDBUwg5PMOG7QYRJRRIvvOfcsGjHlHrh4wZWs5I-qHYrddalFPzJgHkxuASGJi0hv0qbC_H1tytyRipyyJRLdnFTYiwMOSgoafpvALP1fiFWWDqFROaC-PvenLP0mdxmwmVySMho-DrjdL1fE-LGkYp-3TpIIgIdoxyiPsRF5QaMdLmm1Z0Zopt43MlWaGI2kxB0SL_XtGOIC51m3cQxp2BmHfN_F7k-cZPfYJQxaTAwSXHG7PSu-vKUrPg-z2g"
+}
+2021-05-10 09:23:39,709:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/authz-v3/13000602916 HTTP/1.1" 200 801
+2021-05-10 09:23:39,710:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Mon, 10 May 2021 09:23:39 GMT
+Content-Type: application/json
+Content-Length: 801
+Connection: keep-alive
+Boulder-Requester: 83350571
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: 0104Ln5Id__DMlxRZmeeDiAnnQE5B46c6DjfZJd4TK6idtg
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "identifier": {
+    "type": "dns",
+    "value": "beta.andalanmama.com"
+  },
+  "status": "pending",
+  "expires": "2021-05-17T09:23:38Z",
+  "challenges": [
+    {
+      "type": "http-01",
+      "status": "pending",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall-v3/13000602916/cMhXSw",
+      "token": "ROzmrcw7S4vi7RE7d3dBDH0UIRKnoGQuFHwtso4fMSQ"
+    },
+    {
+      "type": "dns-01",
+      "status": "pending",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall-v3/13000602916/d58CbQ",
+      "token": "ROzmrcw7S4vi7RE7d3dBDH0UIRKnoGQuFHwtso4fMSQ"
+    },
+    {
+      "type": "tls-alpn-01",
+      "status": "pending",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall-v3/13000602916/3rhoYA",
+      "token": "ROzmrcw7S4vi7RE7d3dBDH0UIRKnoGQuFHwtso4fMSQ"
+    }
+  ]
+}
+2021-05-10 09:23:39,710:DEBUG:acme.client:Storing nonce: 0104Ln5Id__DMlxRZmeeDiAnnQE5B46c6DjfZJd4TK6idtg
+2021-05-10 09:23:39,711:INFO:certbot.auth_handler:Performing the following challenges:
+2021-05-10 09:23:39,712:INFO:certbot.auth_handler:http-01 challenge for api-beta.andalanmama.com
+2021-05-10 09:23:39,713:INFO:certbot.auth_handler:http-01 challenge for beta.andalanmama.com
+2021-05-10 09:23:39,715:DEBUG:certbot.plugins.webroot:Creating root challenges validation dir at /usr/share/nginx/html/.well-known/acme-challenge
+2021-05-10 09:23:39,716:DEBUG:certbot.error_handler:Encountered exception:
+Traceback (most recent call last):
+  File "/opt/certbot/src/certbot/auth_handler.py", line 75, in handle_authorizations
+    resp = self._solve_challenges(aauthzrs)
+  File "/opt/certbot/src/certbot/auth_handler.py", line 139, in _solve_challenges
+    resp = self.auth.perform(all_achalls)
+  File "/opt/certbot/src/certbot/plugins/webroot.py", line 83, in perform
+    self._create_challenge_dirs()
+  File "/opt/certbot/src/certbot/plugins/webroot.py", line 172, in _create_challenge_dirs
+    stat_path = os.stat(path)
+OSError: [Errno 2] No such file or directory: '/usr/share/nginx/html'
+
+2021-05-10 09:23:39,716:DEBUG:certbot.error_handler:Calling registered functions
+2021-05-10 09:23:39,716:INFO:certbot.auth_handler:Cleaning up challenges
+2021-05-10 09:23:39,717:DEBUG:certbot.plugins.webroot:All challenges cleaned up
+2021-05-10 09:23:39,717:WARNING:certbot.renewal:Attempting to renew cert (andalanmama.com) from /etc/letsencrypt/renewal/andalanmama.com.conf produced an unexpected error: [Errno 2] No such file or directory: '/usr/share/nginx/html'. Skipping.
+2021-05-10 09:23:39,719:DEBUG:certbot.renewal:Traceback was:
+Traceback (most recent call last):
+  File "/opt/certbot/src/certbot/renewal.py", line 452, in handle_renewal_request
+    main.renew_cert(lineage_config, plugins, renewal_candidate)
+  File "/opt/certbot/src/certbot/main.py", line 1193, in renew_cert
+    renewed_lineage = _get_and_save_cert(le_client, config, lineage=lineage)
+  File "/opt/certbot/src/certbot/main.py", line 116, in _get_and_save_cert
+    renewal.renew_cert(config, domains, le_client, lineage)
+  File "/opt/certbot/src/certbot/renewal.py", line 310, in renew_cert
+    new_cert, new_chain, new_key, _ = le_client.obtain_certificate(domains, new_key)
+  File "/opt/certbot/src/certbot/client.py", line 353, in obtain_certificate
+    orderr = self._get_order_and_authorizations(csr.data, self.config.allow_subset_of_names)
+  File "/opt/certbot/src/certbot/client.py", line 389, in _get_order_and_authorizations
+    authzr = self.auth_handler.handle_authorizations(orderr, best_effort)
+  File "/opt/certbot/src/certbot/auth_handler.py", line 75, in handle_authorizations
+    resp = self._solve_challenges(aauthzrs)
+  File "/opt/certbot/src/certbot/auth_handler.py", line 139, in _solve_challenges
+    resp = self.auth.perform(all_achalls)
+  File "/opt/certbot/src/certbot/plugins/webroot.py", line 83, in perform
+    self._create_challenge_dirs()
+  File "/opt/certbot/src/certbot/plugins/webroot.py", line 172, in _create_challenge_dirs
+    stat_path = os.stat(path)
+OSError: [Errno 2] No such file or directory: '/usr/share/nginx/html'
+
+2021-05-10 09:23:39,719:ERROR:certbot.renewal:All renewal attempts failed. The following certs could not be renewed:
+2021-05-10 09:23:39,720:ERROR:certbot.renewal:  /etc/letsencrypt/live/andalanmama.com/fullchain.pem (failure)
+2021-05-10 09:23:39,725:DEBUG:certbot.log:Exiting abnormally:
+Traceback (most recent call last):
+  File "/usr/local/bin/certbot", line 11, in <module>
+    load_entry_point('certbot', 'console_scripts', 'certbot')()
+  File "/opt/certbot/src/certbot/main.py", line 1365, in main
+    return config.func(config, plugins)
+  File "/opt/certbot/src/certbot/main.py", line 1272, in renew
+    renewal.handle_renewal_request(config)
+  File "/opt/certbot/src/certbot/renewal.py", line 477, in handle_renewal_request
+    len(renew_failures), len(parse_failures)))
+Error: 1 renew failure(s), 0 parse failure(s)

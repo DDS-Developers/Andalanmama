@@ -1,0 +1,72 @@
+version: "3"
+services:
+  redis:
+    restart: unless-stopped
+    container_name: redis_andalan
+    image: redis:5-alpine
+
+  database:
+    image: mysql:5.7
+    restart: unless-stopped
+    container_name: db_andalan
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: P2sss7cret
+      MYSQL_DATABASE: andalan_db
+    volumes:
+      - ./storage/mysql/:/var/lib/mysql
+
+  app:
+    image: registry.gitlab.com/admin.olrange/pro-andalan:latest
+    container_name: app_andalan
+    restart: unless-stopped
+    environment:
+      APP_NAME: "Andalan Mama"
+      APP_ENV: production
+      APP_MODE: production
+      APP_DEBUG: "false"
+      API_DOMAIN: "api.andalanmama.com"
+      APP_KEY: "base64:z6o92URqjxQ5Ser8nJpU9zMjOVyNIMxIsfUz5h0y4T4="
+      APP_URL: "https://andalanmama.com"
+      DB_CONNECTION: mysql
+      DB_HOST: database
+      DB_PORT: 3306
+      DB_DATABASE: andalan_db
+      DB_USERNAME: root
+      DB_PASSWORD: P2sss7cret
+      FORCE_HTTPS: "true"
+      FILESYSTEM_DRIVER: spaces
+      DO_SPACES_KEY: HV6KIL4N2IQ7JWRL2YFQ
+      DO_SPACES_SECRET: mcFFla2lThfNlSxAtE7rzAPtPCfiRsLYNzTdTZCDVMU
+      DO_SPACES_REGION: sgp1
+      DO_SPACES_BUCKET: andalanmama-assets
+      MAIL_DRIVER: smtp
+      MAIL_HOST: smtp.sendgrid.net
+      MAIL_PORT: 587
+      MAIL_USERNAME: apikey
+      MAIL_PASSWORD: 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
+      MAIL_ENCRYPTION: null
+      GOOGLE_CLIENT_ID: 791853939343-dc05eo7si704d7sip13fohgitrvjm275.apps.googleusercontent.com
+      GOOGLE_CLIENT_SECRET: Ma4VZpZG1faoKjtVnRHIhb7s
+      FACEBOOK_CLIENT_ID: 352360216655699
+      FACEBOOK_CLIENT_SECRET: 11ba6067373b632d624b9cdce3a65da1
+    ports:
+      - '8080:8080'
+
+#  nginx-ssl-proxy:
+#    image: danieldent/nginx-ssl-proxy
+#    container_name: web-proxy
+#    restart: unless-stopped
+#    environment:
+#      UPSTREAM: app:8080
+#      SERVERNAME: andalanmama.com
+#      EXTRANAMES: beta.andalanmama.com,api-beta.andalanmama.com,api.andalanmama.com
+#      HSTS_HEADER: skip
+#      NGINX_CLIENT_MAX_BODY_SIZE: 512m
+#      NGINX_CLIENT_BODY_BUFFER_SIZE: 512m
+#    ports:
+#      - '81:80'
+#      - '444:443'
+#    volumes:
+#      - ./storage/letsencrypt:/etc/letsencrypt
